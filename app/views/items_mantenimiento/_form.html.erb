@@ -1,0 +1,35 @@
+<%= form_with(model: item_mantenimiento) do |form| %>
+  <% if item_mantenimiento.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(item_mantenimiento.errors.count, "error") %> prohibited this item_mantenimiento from being saved:</h2>
+
+      <ul>
+        <% item_mantenimiento.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nombre, style: "display: block" %>
+    <%= form.text_field :nombre %>
+  </div>
+
+  <div>
+    <%= form.label :cambiar_dias, style: "display: block" %>
+    <%= form.number_field :cambiar_dias %>
+  </div>
+
+  <div>
+    <%= form.label :cambiar_kmts, style: "display: block" %>
+    <%= form.number_field :cambiar_kmts %>
+  </div>
+
+  <br>
+  
+  <div>
+    <%= form.submit "Confirmar", class: 'btn btn-success' %>   
+    <%= link_to "Cancelar", items_mantenimiento_path, class: "btn btn-danger"  %>
+  </div>
+<% end %>

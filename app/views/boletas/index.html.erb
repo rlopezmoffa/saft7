@@ -1,0 +1,73 @@
+<div class="pb-2 mt-4 mb-2 border-bottom">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Boletas de liquidaciones de viajes</h3>
+    </div>
+    <div class="col-sm-6">
+      <div align="right">
+        <%= link_to 'Crear Boleta', new_boleta_path, class: 'btn btn-primary' %>            
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= form_tag boletas_path, :method => 'get' do %>
+  <div class="field">
+
+  <%= label_tag :fecha_inicial %>
+  <%= select_date @fecha_inicial, :prefix => :from %>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <%= label_tag :fecha_final %>
+  <%= select_date @fecha_final, :prefix => :to %>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <%= submit_tag "Aplicar seleccion" %>
+  </div>
+<% end %>
+
+<br />
+<div class="table-responsive">
+ <table class="table table-striped table-sm">
+    <thead>
+      <tr>       
+        <th><div align="center">#</th>
+        <th>Fecha</th>         
+        <th>Chofer</th>
+        <th>Vehiculo</th>     
+        <th>Turno</th>     
+        <th>Recaudacion</th>    
+        <th>Salario</th>         
+        <th>Forma Pago</th>       
+        <th>Combustible</th>
+        <th>Aceite</th>     
+        <th>Gomeria</th>     
+        <th>Lavado</th>    
+        <th>Otros</th>    
+        <th>Aportes</th>   
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @boletas.each do | boleta | %>
+        <tr>         
+          <td><div align="center"><%= link_to boleta.id, boleta %></td>
+          <td><%= boleta.fecha %></td>                               
+          <td><%= boleta.get_chofer %></td>      
+          <td><%= boleta.get_vehiculo %></td>     
+          <td><%= boleta.turno %></td>      
+          <td><%= boleta.total_recaudado %></td>    
+          <td><%= boleta.get_salario %></td>    
+          <td><%= boleta.get_forma_pago %></td>    
+          <td><%= boleta.combustible %></td>    
+          <td><%= boleta.aceite %></td>    
+          <td><%= boleta.gomeria %></td>    
+          <td><%= boleta.lavados %></td>    
+          <td><%= boleta.otros %></td>           
+          <td><%= number_with_precision(boleta.get_total_aportes,
+            :precision => 0, :delimiter => ".", :separator => ",") %></td> 
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

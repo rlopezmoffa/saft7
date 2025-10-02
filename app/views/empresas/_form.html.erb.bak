@@ -1,0 +1,67 @@
+<%= form_with(model: empresa) do |form| %>
+  <% if empresa.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(empresa.errors.count, "error") %> prohibited this empresa from being saved:</h2>
+
+      <ul>
+        <% empresa.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nombre, style: "display: block" %>
+    <%= form.text_field :nombre %>
+  </div>
+
+  <div>
+    <%= form.label :direccion, style: "display: block" %>
+    <%= form.text_field :direccion %>
+  </div>
+
+  <div>
+    <%= form.label :nro_bps, style: "display: block" %>
+    <%= form.text_field :nro_bps %>
+  </div>
+
+  <div>
+    <%= form.label :rut, style: "display: block" %>
+    <%= form.text_field :rut %>
+  </div>
+
+    <div>
+    <%= form.label :telefonos, style: "display: block" %>
+    <%= form.text_field :telefonos %>
+  </div>
+
+    <div>
+    <%= form.label :whatsapp, style: "display: block" %>
+    <%= form.text_field :whatsapp %>
+  </div>
+
+    <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+
+
+    <div>
+    <%= form.label :fecha_ingreso, style: "display: block" %>
+    <%= form.date_field :fecha_ingreso %>
+  </div>
+
+    <div>
+    <%= form.label :observaciones, style: "display: block" %>
+    <%= form.text_field :observaciones %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.submit "Confirmar", class: 'btn btn-success' %>
+    <%= link_to "Cancelar", empresas_choferes_path(:empresa_id => @empresa.id), class: "btn btn-danger" %>
+  </div>
+
+<% end %>

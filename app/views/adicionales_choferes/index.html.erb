@@ -1,0 +1,79 @@
+<div class="pb-2 mt-4 mb-2 border-bottom">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Adicionales Choferes (Gastos/Ingresos)</h3>
+    </div>
+    <div class="col-sm-6">
+      <div align="right">
+        <%= link_to 'Crear Adicional Chofer', new_adicional_chofer_path, class: 'btn btn-primary' %>      
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= form_tag adicionales_choferes_path, :method => 'get' do %>
+  <div class="field">
+
+  <%= label_tag :fecha_inicial %>
+  <%= select_date @fecha_inicial, :prefix => :from %>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <%= label_tag :fecha_final %>
+  <%= select_date @fecha_final, :prefix => :to %>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= label_tag :chofer %>   
+  <%= collection_select :chofer, :id, Chofer.order(:nombre),:id,:get_nombre_completo, include_blank: false %> 
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <%= submit_tag "Aplicar seleccion" %>
+  </div>
+<% end %>
+
+<div class="table-responsive">
+ <table class="table table-striped table-sm">
+    <thead>
+      <tr>               
+        <th>Chofer</th>
+        <th>Fecha</th>
+        <th>Gastos</th>                      
+        <th>Ingresos</th>      
+        <th>Concepto</th>      
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @adicionales_choferes.each do | adicional_chofer | %>
+        <tr>                 
+          <td><%= adicional_chofer.get_chofer %></td>
+          <td><%= adicional_chofer.fecha %></td>
+          <td><%= adicional_chofer.gastos %></td>                                                
+          <td><%= adicional_chofer.ingresos %></td>             
+          <td><%= adicional_chofer.concepto %></td>          
+
+          <td style="width: 25%">               
+            <%= link_to "Editar", edit_adicional_chofer_path(adicional_chofer), class: "btn btn-success btn-block" %>                     
+            <%= link_to "Borrar", adicional_chofer, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Confirma?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>                       
+        <th>Total Gastos</th>                      
+        <th>Total Ingresos</th>      
+      </tr>
+    </thead>
+
+    <tbody>    
+      <tr>       
+        <td><%= @total_gastos %></td>                                                
+        <td><%= @total_ingresos %></td>                      
+      </tr>     
+    </tbody>
+  </table>
+</div>

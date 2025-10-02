@@ -1,0 +1,149 @@
+<div id="<%= dom_id boleta %>">
+
+<br><br>
+
+<div class="row">
+  <div class="col-sm-2"> <p><strong>Boleta #</strong><%= boleta.id %></p></div>
+  <div class="col-sm-2"> <p><strong>Empresa: </strong><%= boleta.get_empresa.nombre %></p></div>
+</div>   
+
+ <table class="table table-bordered">
+    <thead></thead>
+    <tbody>   
+      <tr>     
+        <td><strong>Fecha: </strong><%= boleta.fecha %></td>     
+        <td><strong>Chofer: </strong><%= boleta.get_chofer %></td>
+        <td><strong>Vehiculo: </strong><%= boleta.get_vehiculo %></td>
+        <td><strong>Turno: </strong><%= boleta.get_turno %></td>
+        <td><strong>Liquidacion: </strong><%= boleta.get_tipo_liquidacion %></td>
+      </tr>       
+    </tbody>
+  </table>  
+
+  <table class="table table-bordered">   
+    <tbody>   
+      <tr>     
+        <td><strong>Ticket: </strong><%= boleta.ticket %></td>       
+        <td><strong>Kmts.Iniciales: </strong><%= boleta.kmts_ini %></td>     
+        <td><strong>Kmts.Finales: </strong><%= boleta.kmts_fin %></td>
+        <td><strong>Kmts.Recorridos: </strong><%= boleta.get_kmts_recorridos %></td>
+        <td><strong>$ X Kmt.: </strong><%= boleta.get_pesos_kmt %></td>
+      </tr>       
+    </tbody>
+  </table>  
+
+  <table class="table table-bordered">   
+    <tbody>   
+      <tr>            
+        <td><strong>Salario: </strong><%= boleta.get_salario %></td>    
+        <td><strong>Forma Pago: </strong><%= boleta.get_forma_pago %></td>    
+        <td><strong>Aporte calculado: </strong><%= number_with_precision(boleta.get_aporte_calculado,
+            :precision => 0, :delimiter => ".", :separator => ",") %></td>
+        <td><strong>Aporte manual: </strong><%= boleta.aporte_manual %></td>     
+        <td><strong>Total aportes: </strong><%= number_with_precision(boleta.get_total_aportes,
+            :precision => 0, :delimiter => ".", :separator => ",")
+        
+        %></td>       
+      </tr>       
+    </tbody>
+  </table>  
+
+  <table class="table table-bordered">   
+    <tbody>   
+      <tr>     
+        <td><strong>Recaudacion: </strong><%= boleta.total_recaudado %></td>      
+        <td><strong>Mercado Pago: </strong><%= boleta.rec_mercado_pago %></td>     
+        <td><strong>BITS: </strong><%= boleta.rec_bits %></td>
+        <td><strong>OCACEL: </strong><%= boleta.rec_oca_cel %></td>       
+        <td><strong>Transferencia: </strong><%= boleta.rec_transferencia %></td>     
+        <td><strong>H13: </strong><%= boleta.rec_h13 %></td>
+        <td><strong>POS: </strong><%= boleta.rec_pos %></td>    
+        <td><strong>Otros: </strong><%= boleta.rec_otros %></td>       
+      </tr>       
+    </tbody>
+  </table>  
+
+  <table class="table table-bordered">   
+    <tbody>   
+      <tr>     
+        <td><strong>Combustible: </strong><%= boleta.combustible %></td>     
+        <td><strong>Combust.Cred.: </strong><%= boleta.combustible_credito %></td>    
+        <td><strong>Aceite: </strong><%= boleta.aceite %></td>
+        <td><strong>Gomeria: </strong><%= boleta.gomeria %></td>       
+        <td><strong>Lavado: </strong><%= boleta.lavados %></td>     
+        <td><strong>Viaticos: </strong><%= boleta.viaticos %></td>
+        <td><strong>Retenciones: </strong><%= boleta.retenciones %></td>
+        <td><strong>Otros: </strong><%= boleta.otros %></td>                
+      </tr>       
+    </tbody>
+  </table>  
+
+  <table class="table table-bordered">   
+    <tbody>   
+      <tr>     
+        <td><strong>Detalle Otros: </strong><%= boleta.detalle_otros %></td>                        
+      </tr>       
+    </tbody>
+  </table>    
+
+  <table class="table table-bordered">
+    <thead></thead>
+    <tbody>   
+      <tr>     
+        <td><strong>Recaudacion: </strong><%= boleta.total_recaudado %></td>     
+        
+        <td><strong>Salario: </strong><%= boleta.get_salario %></td>
+
+        <td><strong>Aportes: </strong><%= number_with_precision(boleta.get_total_aportes,
+            :precision => 0, :delimiter => ".", :separator => ",") %></td>
+
+        <td><strong>Gastos: </strong><%= boleta.get_gastos %></td>
+
+        <td><strong>Tarjetas: </strong><%= boleta.get_tarjetas %></td>      
+
+        <td><strong>Liquido: </strong><%= number_with_precision(boleta.get_liquido,
+            :precision => 0, :delimiter => ".", :separator => ",") %></td>                
+
+        <td><strong>Entregado: </strong><%= boleta.total_entregado %></td>
+
+        <td><strong>Diferencia: </strong><%= number_with_precision(boleta.get_diferencia,
+            :precision => 0, :delimiter => ".", :separator => ",") %></td>
+      </tr>       
+    </tbody>
+  </table>  
+
+  <br>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+</div>

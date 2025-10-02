@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @adicional_vehiculo %>
+
+<div>
+  <%= link_to "Edit this adicional vehiculo", edit_adicional_vehiculo_path(@adicional_vehiculo) %> |
+  <%= link_to "Back to adicional vehiculos", adicionales_vehiculos_path %>
+
+  <%= button_to "Destroy this adicional vehiculo", @adicional_vehiculo, method: :delete %>
+</div>

@@ -1,0 +1,67 @@
+<%= bootstrap_form_with(model: boleta, data: { controller: "dropdown", action: "change->dropdown#submit" })  do |form| %>
+  <% if boleta.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(boleta.errors.count, "error") %> prohibited this boleta from being saved:</h2>
+
+      <ul>
+        <% boleta.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %> 
+  
+  <div class="row">
+    <div class="col"><%= form.date_field :fecha, :autofocus => true %></div>   
+    <div class="col"><%= form.collection_select :chofer_id, Chofer.order(:nombre),:id, :get_nombre_completo, include_blank: false %></div>
+    <div class="col"><%= form.collection_select :vehiculo_id, Vehiculo.order(:matricula),:id,:matricula, include_blank: false %></div>
+    <div class="col"><%= form.select :turno, [["Diurno", "1"], ["Nocturno", "2"]] %></div>    
+    <div class="col"><%= form.select :tipo_liquidacion, [["Diaria", "1"], ["Semanal", "2"]] %></div>    
+  </div>
+
+  <div class="row">   
+    <div class="col"><%= form.text_field :ticket %></div>   
+    <div class="col"><%= form.text_field :kmts_ini, label: "Kmts. Iniciales" %></div>     
+    <div class="col"><%= form.text_field :kmts_fin, label: "Kmts. Finales" %></div>          
+    <div class="col"><%= form.text_field :aporte_manual %></div>
+    <div class="col"><%= form.text_field :salario %></div>     
+    <div class="col"><%= form.select :forma_pago, [["Efectivo", "1"], ["Transferencia", "2"]] %></div>   
+  </div>
+
+  <div class="row">    
+    <div class="col"><%= form.text_field :total_recaudado, label: "Recaudacion" %></div>  
+    <div class="col"><%= form.text_field :rec_mercado_pago, label: "Mercado Pago" %></div>
+    <div class="col"><%= form.text_field :rec_bits, label: "BITS" %></div>
+    <div class="col"><%= form.text_field :rec_oca_cel, label: "OCA Cel" %></div>
+    <div class="col"><%= form.text_field :rec_transferencia, label: "Transferencia" %></div>
+    <div class="col"><%= form.text_field :rec_h13, label: "H13" %></div>
+    <div class="col"><%= form.text_field :rec_pos, label: "POS" %></div>
+    <div class="col"><%= form.text_field :rec_otros, label: "Otros" %></div>
+  </div>   
+
+  <div class="row">
+    <div class="col"><%= form.text_field :combustible %></div>
+    <div class="col"><%= form.text_field :combustible_credito, label: "Combust.Cred." %></div>
+    <div class="col"><%= form.text_field :aceite %></div>
+    <div class="col"><%= form.text_field :gomeria %></div>
+    <div class="col"><%= form.text_field :lavados %></div>   
+    <div class="col"><%= form.text_field :viaticos %></div>      
+    <div class="col"><%= form.text_field :retenciones %></div>      
+    <div class="col"><%= form.text_field :otros %></div>
+  </div>  
+   
+  <div class="row">  
+    <div class="col"><%= form.text_field :detalle_otros %></div>
+  </div>  
+
+  <div class="row">  
+    <div class="col"><%= form.text_field :total_entregado %></div>
+  </div>  
+
+  <br>
+
+  <div>
+    <%= form.submit "Confirmar", class: 'btn btn-success' %>
+    <%= link_to "Cancelar", boletas_path, class: "btn btn-danger" %>
+  </div>
+<% end %>   

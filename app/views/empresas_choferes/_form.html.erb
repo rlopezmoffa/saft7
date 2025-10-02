@@ -1,0 +1,49 @@
+<%= form_with(model: empresa_chofer) do |form| %>
+  <% if empresa_chofer.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(empresa_chofer.errors.count, "error") %> prohibited this empresa_chofer from being saved:</h2>
+
+      <ul>
+        <% empresa_chofer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <div>
+    <%= form.label :fecha_alta, style: "display: block" %>
+    <%= form.date_field :fecha_alta %>
+  </div>
+
+  <div>
+    <%= form.label :alta_bps, style: "display: block" %>
+    <%= form.date_field :fecha_alta_bps %>
+  </div>
+
+ <div>
+    <%= form.label :porc_comision, style: "display: block" %>
+    <%= form.text_field :porc_comision %>
+  </div>
+
+  <div>
+    <%= form.label :porc_aporte, style: "display: block" %>
+    <%= form.text_field :porc_aporte %>
+  </div>
+
+  <%= form.hidden_field :empresa_id, :value => @empresa.id %>
+  <%= form.hidden_field :chofer_id, :value => @chofer.id %>
+  <br>
+  <div>    
+    <%= form.submit "Confirmar", class: 'btn btn-success' %>
+
+    <% if @es_alta %>
+      <%= link_to "Cancelar", empresas_choferes_path(:empresa_id => @empresa.id), class: "btn btn-danger" %>
+    <% else %>
+      <%= link_to "Cancelar", empresa_path(@empresa), class: "btn btn-danger" %>
+    <% end%>
+  </div>
+
+
+  </div>
+<% end %>

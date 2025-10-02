@@ -1,0 +1,63 @@
+<%= bootstrap_form_with(model: chofer) do |form| %>
+  <% if chofer.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(chofer.errors.count, "error") %> prohibited this chofer from being saved:</h2>
+
+      <ul>
+        <% chofer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="container">
+
+    <div class="row">     
+      <div class="col"><%= form.text_field :nombre, :autofocus => true %></div>    
+      <div class="col"><%= form.text_field :apellido %></div>
+      <div class="col"><%= form.text_field :domicilio %></div>          
+    </div>
+
+    <div class="row">
+      <div class="col"><%= form.date_field :fecha_nacimiento %></div>    
+      <div class="col"><%= form.text_field :telefonos %></div>     
+      <div class="col"><%= form.text_field :whatsapp %></div>          
+      <div class="col"><%= form.text_field :email %></div>   
+    </div>
+
+    <div class="row">
+      <div class="col"><%= form.text_field :mutualista %></div>
+      <div class="col"><%= form.text_field :emergencia %></div>      
+      <div class="col"><%= form.text_field :contacto_tercero %></div>     
+    </div>
+
+    <div class="row">
+      <div class="col"><%= form.text_field :cedula %></div>  
+      <div class="col"><%= form.date_field :vencimiento_cedula, label: "Venc.Cedula"  %></div>
+      <div class="col"><%= form.text_field :libreta_chofer %></div>   
+      <div class="col"><%= form.date_field :vencimiento_libreta_chofer, label: "Venc.Libreta" %></div>   
+      <div class="col"><%= form.text_field :carne_salud %></div>          
+      <div class="col"><%= form.date_field :vencimiento_carne_salud, label: "Venc.Carne Salud"  %></div>     
+    </div>
+
+    <div class="row">
+      <div class="col"><%= form.text_field :banco %></div>    
+      <div class="col"><%= form.text_field :sucursal_banco %></div>     
+      <div class="col"><%= form.text_field :cuenta_banco %></div>  
+    </div>
+
+    <div class="row">
+        <div class="col"><%= form.text_field :observaciones %></div>      
+    </div>
+      
+    <br>
+      
+    <div>
+      <%= form.submit "Confirmar", class: 'btn btn-success' %>
+      <%= link_to "Cancelar", choferes_path, class: "btn btn-danger" %>
+    </div>
+
+  </div>
+
+<% end %>

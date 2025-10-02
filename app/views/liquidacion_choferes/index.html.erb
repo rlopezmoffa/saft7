@@ -1,0 +1,49 @@
+<div class="page-header">
+  <h3>Liquidacion por Chofer</h3>
+</div>
+
+<%= form_tag(liquidacion_choferes_index_url, :method => "get", id: "search-form") do %> 
+  <%= label_tag "Empresa: " %>  
+  <%= select_tag(:empresa_id, options_from_collection_for_select(Empresa.all, :id, :nombre, selected: @empresa_id )) %>    
+
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  <%= label_tag "Mes: "%>
+  <%= select_tag(:mes, options_for_select([['Enero', 1], ['Febrero', 2], ['Marzo', 3],
+    ['Abril', 4], ['Mayo', 5], ['Junio', 6], ['Julio', 7], ['Agosto', 8], ['Setiembre', 9],
+    ['Octubre', 10], ['Noviembre', 11], ['Diciembre', 12]], selected: @mes )) %>
+
+  <%= label_tag "Año: "%>
+  <%= text_field_tag :anio, params[:anio], value: @anio %>
+
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+  <%= submit_tag "Aplicar seleccion" %>
+<% end %>
+
+<br>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th><div align="left">Cedula</th>
+        <th><div align="left">Nombre</th>           
+        <th><div align="center">Jornales</th>        
+        <th><div align="center">Recaudacion</th>                        
+      </tr>
+    </thead>
+    <tbody>
+    <% if @lineas_reporte.count > 0 %>
+      <% @lineas_reporte.each do | linea | %>
+        <tr>
+          <td><div align="left"><%= linea.cedula %></td>
+          <td><div align="left"><%= linea.nombre %></td>       
+          <td><div align="center"><%= linea.jornales %></td>  
+          <td><div align="center"><%= linea.recaudacion %></td>        
+          <td><div align="center"><%= linea.salario %></td>   
+        </tr>     
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>

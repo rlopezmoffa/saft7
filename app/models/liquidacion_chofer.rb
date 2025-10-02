@@ -1,0 +1,2 @@
+class LiquidacionChofer < ApplicationRecord
+end

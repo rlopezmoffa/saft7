@@ -1,0 +1,46 @@
+<%= bootstrap_form_with(model: empresa) do |form| %>
+  <% if empresa.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(empresa.errors.count, "error") %> prohibited this empresa from being saved:</h2>
+
+      <ul>
+        <% empresa.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col"><%= form.text_field :nombre, :autofocus => true %></div>
+      <div class="col"><%= form.text_field :direccion %></div>
+    </div>
+
+    <div class="row">
+      <div class="col"><%= form.date_field :fecha_ingreso %></div>
+      <div class="col"><%= form.text_field :nro_bps %></div>
+      <div class="col"><%= form.text_field :rut %></div>
+    </div>
+      
+    <div class="row">
+      <div class="col"><%= form.text_field :telefonos %></div>
+      <div class="col"><%= form.text_field :whatsapp %></div>
+      <div class="col"><%= form.email_field :email %></div>
+    </div>
+
+    <div class="row">
+      <div class="col"><%= form.text_field :observaciones %></div>
+    </div>    
+    
+    <br>    
+
+    <div>
+      <%= form.submit "Confirmar", class: 'btn btn-success' %>
+      <%= link_to "Cancelar", empresas_path, class: "btn btn-danger" %>
+    </div>
+
+  </div>
+
+<% end %>

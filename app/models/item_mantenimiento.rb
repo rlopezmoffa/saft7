@@ -1,0 +1,2 @@
+class ItemMantenimiento < ApplicationRecord
+end

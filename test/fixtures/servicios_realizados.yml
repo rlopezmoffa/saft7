@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item: MyString
+  fecha: 2024-02-13
+  kmts: 1
+  fecha_proximo: 2024-02-13
+  kmts_proximo: 1
+  observaciones: MyText
+
+two:
+  item: MyString
+  fecha: 2024-02-13
+  kmts: 1
+  fecha_proximo: 2024-02-13
+  kmts_proximo: 1
+  observaciones: MyText

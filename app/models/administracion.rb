@@ -1,0 +1,2 @@
+class Administracion < ApplicationRecord
+end

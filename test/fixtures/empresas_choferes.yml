@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  empresa_id: 1
+  chofer_id: 1
+  fecha_alta: 2023-12-07
+
+two:
+  empresa_id: 1
+  chofer_id: 1
+  fecha_alta: 2023-12-07

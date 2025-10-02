@@ -1,0 +1,8 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @vehiculo %>
+
+<div>  
+  <%= link_to "Servicios Realizados", servicios_realizados_path(:id => @vehiculo.id) %> 
+  <%= link_to "Cerrar", vehiculos_path %> 
+</div>

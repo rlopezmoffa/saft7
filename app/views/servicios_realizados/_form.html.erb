@@ -1,0 +1,50 @@
+<%= form_with(model: servicio_realizado) do |form| %>
+  <% if servicio_realizado.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(servicio_realizado.errors.count, "error") %> prohibited this servicio_realizado from being saved:</h2>
+
+      <ul>
+        <% servicio_realizado.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :item, style: "display: block" %>   
+    <%= form.collection_select :item_id, ItemMantenimiento.order(:nombre),:id, :nombre, include_blank: false %>
+  </div>
+
+  <div>
+    <%= form.label :fecha, style: "display: block" %>
+    <%= form.date_field :fecha %>
+  </div>
+
+  <div>
+    <%= form.label :kmts, style: "display: block" %>
+    <%= form.number_field :kmts %>
+  </div>
+
+  <div>
+    <%= form.label :fecha_proximo, style: "display: block" %>
+    <%= form.date_field :fecha_proximo %>
+  </div>
+
+  <div>
+    <%= form.label :kmts_proximo, style: "display: block" %>
+    <%= form.number_field :kmts_proximo %>
+  </div>
+
+  <div>
+    <%= form.label :observaciones, style: "display: block" %>
+    <%= form.text_area :observaciones %>
+  </div>
+    <%= form.hidden_field :vehiculo_id, :value => @vehiculo.id %>
+  <br>
+
+  <div>
+    <%= form.submit "Confirmar", class: 'btn btn-success' %>   
+    <%= link_to "Cancelar", servicios_realizados_path, class: "btn btn-danger"  %>
+  </div>
+<% end %>

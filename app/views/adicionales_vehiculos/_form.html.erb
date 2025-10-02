@@ -1,0 +1,46 @@
+<%= form_with(model: adicional_vehiculo) do |form| %>
+  <% if adicional_vehiculo.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(adicional_vehiculo.errors.count, "error") %> prohibited this adicional_vehiculo from being saved:</h2>
+
+      <ul>
+        <% adicional_vehiculo.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div>
+    <%= form.label :vehiculo_id, style: "display: block" %>   
+    <%= form.collection_select :vehiculo_id, Vehiculo.order(:matricula),:id,:matricula, include_blank: false %>
+  </div>
+
+  <div>
+    <%= form.label :fecha, style: "display: block" %>
+    <%= form.date_field :fecha %>
+  </div>
+
+  <div>
+    <%= form.label :gastos, style: "display: block" %>
+    <%= form.text_field :gastos %>
+  </div>
+
+  <div>
+    <%= form.label :ingresos, style: "display: block" %>
+    <%= form.text_field :ingresos %>
+  </div>
+
+  <div>
+    <%= form.label :concepto, style: "display: block" %>
+    <%= form.text_field :concepto %>
+  </div>
+
+  <br>
+ 
+  <div>
+    <%= form.submit "Confirmar", class: 'btn btn-success' %>   
+    <%= link_to "Cancelar", adicionales_vehiculos_path, class: "btn btn-danger"  %>
+  </div>
+<% end %>

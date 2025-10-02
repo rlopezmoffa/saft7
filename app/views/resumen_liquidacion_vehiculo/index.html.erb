@@ -1,0 +1,126 @@
+<div class="page-header">
+  <h3>Resumen de la Liquidacion del Vehiculo - <%= $titulo_periodo %></h3>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <tbody>
+      <tr>         	
+      	<th>Total recaudado</th>     
+      	<td><div align="right"><%= number_with_precision(@total_recaudado, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>      
+
+      	<td><div align="right"><%= number_with_precision(@incidencia_total_recaudado, 
+          :precision => 2, :delimiter => ".", :separator => ",") %>%</td>            
+      </tr>  
+
+      <tr>         	
+      	<th>Salario</th>     
+        <td><div align="right"><%= number_with_precision(@salario, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>      
+
+        <td><div align="right"><%= number_with_precision(@incidencia_salario, 
+          :precision => 2, :delimiter => ".", :separator => ",") %>%</td>                   
+      </tr>     
+
+      <tr>         	
+      	<th>Combustible</th>     
+      	<td><div align="right"><%= number_with_precision(@combustible, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>      
+
+        <td><div align="right"><%= number_with_precision(@incidencia_combustible, 
+          :precision => 2, :delimiter => ".", :separator => ",") %>%</td>   
+      </tr>       
+
+      <tr>         	
+      	<th>Aceite</th>     
+      	<td><div align="right"><%= number_with_precision(@aceite, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>      
+
+        <td><div align="right"><%= number_with_precision(@incidencia_aceite, 
+          :precision => 2, :delimiter => ".", :separator => ",") %>%</td>       
+      </tr>     
+
+      <tr>         	
+      	<th>Gomeria</th>     
+      	<td><div align="right"><%= number_with_precision(@gomeria, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>      
+
+        <td><div align="right"><%= number_with_precision(@incidencia_gomeria, 
+          :precision => 2, :delimiter => ".", :separator => ",") %>%</td>          
+      </tr>       
+
+       <tr>           
+        <th>Lavados</th>     
+        <td><div align="right"><%= number_with_precision(@lavados, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>      
+
+        <td><div align="right"><%= number_with_precision(@incidencia_lavados, 
+          :precision => 2, :delimiter => ".", :separator => ",") %>%</td>      
+      </tr>  
+
+      <tr>         	
+      	<th>Otros</th>     
+      	<td><div align="right"><%= number_with_precision(@otros, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>      
+
+        <td><div align="right"><%= number_with_precision(@incidencia_varios, 
+          :precision => 2, :delimiter => ".", :separator => ",") %>%</td>   
+      </tr>  
+
+      <tr>          
+        <th>Aportes</th>     
+        <td><div align="right"><%= number_with_precision(@aportes, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>      
+
+        <td><div align="right"><%= number_with_precision(@incidencia_aportes, 
+          :precision => 2, :delimiter => ".", :separator => ",") %>%</td>   
+      </tr>        
+
+      <tr>         	
+      	<th>Ganancia</th>     
+      	<td><div align="right"><%= number_with_precision(@ganancia, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>      
+
+        <td><div align="right"><%= number_with_precision(@incidencia_ganancia, 
+          :precision => 2, :delimiter => ".", :separator => ",") %>%</td>    
+      </tr>     
+
+    </tbody>
+  </table>
+</div> 
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <tbody>
+      <tr>                   
+        <th><div align="right">Total kmts. recorridos</th>         
+        <th><div align="right">Dias recaudados</th>     
+        <th><div align="right">Prom. Rec.diaria</th>         
+        <th><div align="right">Recaudacion X kmt</th>                      
+      </tr>  
+
+      <tr>                    
+        <td><div align="right"><%= number_with_precision(@total_kmts, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>      
+        <td><div align="right"><%= number_with_precision(@dias_recaudados, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>    
+        <td><div align="right"><%= number_with_precision(@promedio_diario, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>      
+        <td><div align="right"><%= number_with_precision(@promedio_kmt_mensual, 
+          :precision => 2, :delimiter => ".", :separator => ",") %></td>                                        
+      </tr>       
+
+    </tbody>
+  </table>
+</div> 
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <tbody>
+      <tr>         	
+      	<td><%= @texto %></td>           	
+      </tr>       
+    </tbody>
+  </table>
+</div> 

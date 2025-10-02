@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @empresa_chofer %>
+
+<div>
+  <%= link_to "Edit this empresa chofer", edit_empresa_chofer_path(@empresa_chofer) %> |
+  <%= link_to "Back to empresa choferes", empresas_choferes_path %>
+
+  <%= button_to "Destroy this empresa chofer", @empresa_chofer, method: :delete %>
+</div>

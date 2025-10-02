@@ -1,0 +1,46 @@
+<div id="<%= dom_id empresa %>">
+
+
+  <br>
+
+  
+
+  <h3>Empresa</h3>
+
+  <table class="table table-bordered">
+    <thead></thead>
+    <tbody>   
+      <tr>     
+        <td><strong>Nombre:</strong><%= empresa.nombre %></td>     
+        <td><strong>Direccion:</strong><%= empresa.direccion %></td>
+        <td><strong>BPS:</strong><%= empresa.nro_bps %></td>
+        <td><strong>RUT:</strong><%= empresa.rut %></td>
+      </tr>       
+    </tbody>
+  </table>  
+
+  <table class="table table-bordered">  
+    <tbody>    
+      <tr>     
+        <td><strong>Fecha Ingreso:</strong><%= empresa.fecha_ingreso %></td>     
+        <td><strong>Telefonos:</strong><%= empresa.telefonos %></td>
+        <td><strong>WhatsApp:</strong><%= empresa.whatsapp %></td>
+        <td><strong>Email:</strong><%= empresa.email %></td>
+        <td><strong>Activa:</strong><%= empresa.flag_activa %></td>
+      </tr>   
+    </tbody>
+  </table> 
+
+   <table class="table table-bordered">  
+    <tbody>    
+      <tr>     
+        <td><strong>Observaciones:</strong><%= empresa.observaciones %></td>            
+      </tr>   
+    </tbody>
+  </table> 
+
+<br><br>
+
+
+
+</div>

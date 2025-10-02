@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @adicional_chofer %>
+
+<div>
+  <%= link_to "Edit this adicional chofer", edit_adicional_chofer_path(@adicional_chofer) %> |
+  <%= link_to "Back to adicional choferes", adicionales_choferes_path %>
+
+  <%= button_to "Destroy this adicional chofer", @adicional_chofer, method: :delete %>
+</div>

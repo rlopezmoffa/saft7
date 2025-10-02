@@ -1,0 +1,46 @@
+<%= bootstrap_form_with(model: vehiculo) do |form| %>
+  <% if vehiculo.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(vehiculo.errors.count, "error") %> prohibited this vehiculo from being saved:</h2>
+
+      <ul>
+        <% vehiculo.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>  
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col"><%= form.collection_select :empresa_id, Empresa.order(:nombre),:id,:nombre, include_blank: false %></div>
+      <div class="col"><%= form.text_field :marca %></div>
+      <div class="col"><%= form.text_field :modelo %></div>
+    </div>
+      
+    <div class="row">
+      <div class="col"><%= form.text_field :movil %> </div>
+      <div class="col"><%= form.text_field :matricula %></div>
+      <div class="col"><%= form.text_field :padron %></div>
+      <div class="col"><%= form.text_field :motor %></div>
+      <div class="col"><%= form.text_field :chasis %></div>
+      <div class="col"><%= form.text_field :combustible %></div>
+      <div class="col"><%= form.text_field :seguro %> </div>
+    </div>
+
+    <div class="row">
+      <div class="col"><%= form.text_field :observaciones %> </div>
+    </div>
+
+    <br>
+
+    <div>
+      <%= form.submit "Confirmar", class: 'btn btn-success' %>
+      <%= link_to "Cancelar", vehiculos_path, class: "btn btn-danger" %>
+    </div>
+
+  </div>
+
+
+<% end %>

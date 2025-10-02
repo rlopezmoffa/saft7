@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @administracion %>
+
+<div>
+  <%= link_to "Edit this administracion", edit_administracion_path(@administracion) %> |
+  <%= link_to "Back to administraciones", administraciones_path %>
+
+  <%= button_to "Destroy this administracion", @administracion, method: :delete %>
+</div>

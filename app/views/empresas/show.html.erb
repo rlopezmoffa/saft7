@@ -1,0 +1,66 @@
+<%= render @empresa %>
+
+<h3>Choferes</h3>
+
+<br />
+<div>
+ <table class="table table-striped table-sm">
+    <thead>
+      <tr>              
+        <th>Nombre</th>                              
+        <th>Ingreso</th>       
+        <th>Alta BPS</th>               
+        <th>Porc.Comision</th>               
+        <th>Porc.Aporte</th>     
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @relaciones.each do | relacion | %>
+        <tr>                  
+          <td><%= relacion.get_nombre_chofer %></td>                         
+          <td><%= relacion.fecha_alta %></td>    
+          <td><%= relacion.fecha_alta_bps %></td>    
+          <td><%= relacion.porc_comision %></td>    
+          <td><%= relacion.porc_aporte %></td>    
+
+           <td style="width: 25%">                                               
+            <%= link_to "Editar relacion", edit_empresa_chofer_path(relacion), class: "btn btn-success" %>
+            <%= link_to "Remover relacion", relacion, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Confirma la desvinculacion del chofer con esta empresa?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<h3>Vehiculos</h3>
+
+<br />
+<div class="table-responsive">
+ <table class="table table-striped table-sm">
+    <thead>
+      <tr>               
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Matricula</th>                
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @vehiculos.each do | vehiculo | %>
+        <tr>                 
+          <td><%= vehiculo.marca %></td>
+          <td><%= vehiculo.modelo %></td>
+          <td><%= vehiculo.matricula %></td>                                                          
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<div>
+ <%= link_to "Incorporar chofer a empresa", empresas_choferes_url(:empresa_id => @empresa.id), class: "btn btn-primary btn-block" %>    
+  <%= link_to "Finalizar", empresas_path, class: "btn btn-warning btn-block" %> 
+</div>

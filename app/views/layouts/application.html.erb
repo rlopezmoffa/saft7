@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SAFT7</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">SAFT</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">                        
+<%# Archivo %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Archivo
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><%= link_to "Empresas", empresas_path, class: "dropdown-item"  %></li>   
+                <li><%= link_to "Vehiculos", vehiculos_path, class: "dropdown-item"  %></li>                                                    
+                <li><%= link_to "Items Mantenimiento", items_mantenimiento_path, class: "dropdown-item"  %></li>                
+                <li><%= link_to "Choferes", choferes_path, class: "dropdown-item"  %></li>    
+                <li><%= link_to "Boletas", boletas_path, class: "dropdown-item"  %></li>     
+                <li><%= link_to "Adic.Vehiculos", adicionales_vehiculos_path, class: "dropdown-item"  %></li>
+                <li><%= link_to "Adic.Choferes", adicionales_choferes_path, class: "dropdown-item"  %></li>
+              </ul>
+            </li>           
+
+<%# Reportes %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Reportes
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><%= link_to "Liquidacion por vehiculo", liquidacion_vehiculo_url, class: "dropdown-item"  %></li>     
+                <li><%= link_to "Liquidacion choferes", liquidacion_choferes_url, class: "dropdown-item"  %></li>                 
+                <li><%= link_to "Vencimientos documentacion choferes", vencimientos_documentacion_choferes_url, class: "dropdown-item"  %></li>            
+                <li><%= link_to "Mantenimiento", reporte_mantenimiento_url, class: "dropdown-item"  %></li>               
+              </ul>
+            </li>             
+              
+        
+<%# Configuracion %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Configuracion
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">                
+                <li><%= link_to "Parametros", configuracion_url, class: "dropdown-item"  %></li>    
+              </ul>
+            </li>
+          </ul>              
+
+<%# session info %>          
+        
+        <% if current_user.present? %>
+          <form class="d-flex">                                         
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <%= current_user.email %>
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><%= link_to "Editar perfil",  "#", class: "dropdown-item"  %></li>               
+                <li><%= link_to "Cerrar sesion", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %></li>                                            
+              </ul>
+            </li>                 
+          </form>
+        <% end %>
+          
+        </div>
+      </div>      
+    </nav>
+
+    <div class="container">        
+      <div class="row">
+        <%= yield %>      
+      </div>
+    </div>
+  </body>
+</html>

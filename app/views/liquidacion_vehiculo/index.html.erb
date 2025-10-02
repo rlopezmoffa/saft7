@@ -1,0 +1,170 @@
+<div class="page-header">
+  <h3>Liquidacion por Vehiculo</h3>
+</div>
+
+<%= form_tag(liquidacion_vehiculo_index_path, :method => "get", id: "search-form") do %>
+  <%= label_tag :vehiculo %>   
+  <%= collection_select :vehiculo, :id, Vehiculo.order(:matricula),:id,:matricula, include_blank: false %> 
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  <%= label_tag "Mes: "%>
+  <%= select_tag(:mes, options_for_select([['Enero', 1], ['Febrero', 2], ['Marzo', 3],
+    ['Abril', 4], ['Mayo', 5], ['Junio', 6], ['Julio', 7], ['Agosto', 8], ['Setiembre', 9],
+    ['Octubre', 10], ['Noviembre', 11], ['Diciembre', 12]], selected: @mes )) %>
+
+  <%= label_tag "Año: "%>
+  <%= text_field_tag :anio, params[:anio], value: @anio %>
+
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+  <%= submit_tag "Aplicar seleccion" %>
+<% end %>
+
+<br>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>      
+       <th><div align="center"><%=link_to "Resumen", :controller => "resumen_liquidacion_vehiculo",
+   :action => "index", :matricula => @matricula, :mes => @mes, :anio => @anio, :dias_recaudados => @dias_recaudados,
+    :final_recaudacion => @final_recaudacion,
+    :final_comision => @final_comision,
+    :final_combustible => @final_combustible,
+    :final_aceite => @final_aceite,
+    :final_gomeria => @final_gomeria,
+    :final_lavados => @final_lavados,
+    :final_otros => @final_otros,
+    :final_aportes => @final_aportes,    
+    :final_kmts => @final_kmts,
+    :final_ganancia => @final_ganancia %>
+    </tr>
+  </thead>
+</table>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover WIDTH="100%"">
+      <thead>
+      <tr>
+        <th><div align="center">Dia</th>     
+        <th><div align="right">Diurno</th>           
+        <th><div align="right">Nocturno</th>        
+        <th><div align="right">Total</th>        
+        <th><div align="right">Comision</th>        
+        <th><div align="right">Combustible</th>  
+        <th><div align="right">Aceite</th>        
+        <th><div align="right">Gomeria</th>  
+        <th><div align="right">Lavado</th>    
+        <th><div align="right">Otros</th>           
+        <th><div align="right">Detalle Otros</th>  
+        <th><div align="right">Aportes</th>          
+        <th><div align="right">Subtotal</th>  
+        <th><div align="right">Ganancia</th>          
+        <th><div align="right">Kmts.</th>          
+        <th><div align="right">Valor Kmt.</th>          
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if @lineas_reporte.count > 0 %>  
+    
+      <% @lineas_reporte.each do | x | %>
+
+        <tr>
+
+        <td><div align="center"><%= x.dia %></td>        
+
+        <td><div align="right"><%= number_with_precision(x.rec_diurna, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+        <td><div align="right"><%= number_with_precision(x.rec_nocturna, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+        <td><div align="right"><%= number_with_precision(x.rec_diurna.to_f + x.rec_nocturna.to_f, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+        <td><div align="right"><%= number_with_precision(x.comision, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+        <td><div align="right"><%= number_with_precision(x.combustible, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+        <td><div align="right"><%= number_with_precision(x.aceite, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+        <td><div align="right"><%= number_with_precision(x.gomeria, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+        <td><div align="right"><%= number_with_precision(x.lavados, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+        <td><div align="right"><%= number_with_precision(x.otros, 
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+        <td><div align="left"><%= x.detalle_otros %></td>  
+
+        <td><div align="right"><%= number_with_precision(x.aportes,
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>         
+
+        <td><div align="right"><%= number_with_precision(x.subtotal,
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+        <td><div align="right"><%= number_with_precision(x.ganancia,
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+        <td><div align="right"><%= number_with_precision(x.kmts,
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+        <td><div align="right"><%= number_with_precision(x.valor_kmt,
+          :precision => 2, :delimiter => ".", :separator => ",") %></td>  
+
+      </tr>
+      <% end %>
+      
+      <td><div align="center">Totales</td>
+      
+        <td><div align="right"><%= number_with_precision(@final_diurno, 
+        :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+      <td><div align="right"><%= number_with_precision(@final_nocturno, 
+        :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+      <td><div align="right"><%= number_with_precision(@final_recaudacion, 
+        :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+      <td><div align="right"><%= number_with_precision(@final_comision, 
+        :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+      <td><div align="right"><%= number_with_precision(@final_combustible, 
+        :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+      <td><div align="right"><%= number_with_precision(@final_aceite, 
+        :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+      <td><div align="right"><%= number_with_precision(@final_gomeria, 
+        :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+      <td><div align="right"><%= number_with_precision(@final_lavados, 
+        :precision => 0, :delimiter => ".", :separator => ",") %></td>  
+
+      <td><div align="right"><%= number_with_precision(@final_otros, 
+        :precision => 0, :delimiter => ".", :separator => ",") %></td>         
+
+      <td><div align="right"></td>  
+
+      <td><div align="right"><%= number_with_precision(@final_aportes,
+        :precision => 0, :delimiter => ".", :separator => ",") %></td>       
+
+      <td></td>       
+
+      <td></td>         
+
+      <td><div align="right"><%= number_with_precision(@final_kmts,
+        :precision => 0, :delimiter => ".", :separator => ",") %></td>     
+
+      <td><div align="right"><%= number_with_precision(@final_valor_kmt,
+        :precision => 0, :delimiter => ".", :separator => ",") %></td>     
+      <% end %>
+      </tbody>
+  </table>
+</div>
