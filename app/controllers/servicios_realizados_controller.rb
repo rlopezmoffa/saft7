@@ -20,6 +20,7 @@ class ServiciosRealizadosController < ApplicationController
 
   # GET /servicios_realizados/1/edit
   def edit
+   
   end
 
   # POST /servicios_realizados or /servicios_realizados.json

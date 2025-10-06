@@ -33,10 +33,12 @@
           <td><%= servicio_realizado.fecha_proximo %></td>                                                
           <td><%= servicio_realizado.kmts_proximo %></td>       
 
-          <td style="width: 25%">               
-            <%= link_to "Editar", edit_servicio_realizado_path(servicio_realizado), class: "btn btn-success btn-block" %>                     
-            <%= link_to "Borrar", servicio_realizado, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Confirma?" } %>
-          </td>
+          <% if false %>
+            <td style="width: 25%">               
+              <%= link_to "Editar", edit_servicio_realizado_path(servicio_realizado), class: "btn btn-success btn-block" %>                     
+              <%= link_to "Borrar", servicio_realizado, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Confirma?" } %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
