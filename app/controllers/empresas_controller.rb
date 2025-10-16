@@ -4,6 +4,18 @@ class EmpresasController < ApplicationController
   # GET /empresas or /empresas.json
   def index
     @empresas = Empresa.all
+
+      respond_to do |format|    
+        format.xlsx {            
+          response.headers[
+            'Content-Disposition'
+            ] = "attachment; filename=Empresas.xlsx"}
+
+        format.html {             
+          render :index 
+      }
+      
+    end
   end
 
   # GET /empresas/1 or /empresas/1.json
@@ -16,8 +28,6 @@ class EmpresasController < ApplicationController
         @choferes << chofer  
       end
     end
-
-
     @vehiculos = Vehiculo.where('empresa_id = ?', @empresa.id)
   end
 

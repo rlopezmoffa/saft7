@@ -1,0 +1,24 @@
+wb = xlsx_package.workbook
+
+
+# Define a style for your header row
+# This example sets a bold font and a light grey background color
+header_style = wb.styles.add_style b: true, bg_color: "DDDDDD"
+# Add the main title row
+  wb.add_worksheet(name: "Empresas") do |sheet|
+  # The array contains the text for each cell in the title row
+  sheet.add_row ["My Main Report Title", "", "", ""] # Example with merged cells later
+
+  # Apply the header style to the first row (index 0)
+  sheet.row_style 0, header_style
+
+  # Optionally, merge cells for the title to span across columns
+  sheet.merge_cells "A1:D1" # Merges cells from A1 to D1
+
+  # Create the header row
+  sheet.add_row ["Nombre", "Direccion", "Nombre", "Direccion"]
+  # Create entries for each item
+  @empresas.each do |item|
+    sheet.add_row [item.nombre, item.direccion, item.nombre, item.direccion]
+  end
+end

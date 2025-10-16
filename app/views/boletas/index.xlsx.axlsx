@@ -1,0 +1,34 @@
+wb = xlsx_package.workbook
+
+header_style = wb.styles.add_style b: true, bg_color: "DDDDDD"
+
+wb.add_worksheet(name: "Boletas") do |sheet|
+  # Titulo
+
+  sheet.add_row [@titulo] # Example with merged cells later
+  sheet.row_style 0, header_style, :alignment => { :horizontal=> :center } 
+
+  # Optionally, merge cells for the title to span across columns
+  sheet.merge_cells "A1:M1" 
+  
+  sheet.add_row ["Empresa", "Fecha","Chofer","Vehiculo","Turno",
+  "Tipo Liq", "Ticket", "Km.Ini", "Km.Fin", "Merc.Pago", "Bits", "Oca Cel", "Transferencia", "H13",
+  "POS", "Otros", "Recaudacion","Salario","Forma Pago","Combustible","Aceite","Gomeria","Lavado","Otros","Aportes", "Viaticos", "Retenciones"]
+
+  # Create entries for each item
+  @boletas.each do | boleta |
+    sheet.add_row [
+      boleta.get_nombre_empresa, boleta.fecha,boleta.get_chofer,boleta.get_vehiculo,boleta.get_turno,
+      boleta.get_tipo_liquidacion, boleta.ticket, boleta.kmts_ini, boleta.kmts_fin, boleta.rec_mercado_pago, boleta.rec_bits,
+      boleta.rec_oca_cel, boleta.rec_transferencia, boleta.rec_h13, boleta.rec_pos, boleta.rec_otros,                     
+      boleta.total_recaudado,
+      boleta.get_salario,boleta.get_forma_pago,boleta.combustible,boleta.aceite,boleta.gomeria,
+      boleta.lavados,boleta.otros,number_with_precision(boleta.get_total_aportes,:precision => 0, :delimiter => ".", :separator => ","),
+      boleta.viaticos, boleta.retenciones
+    ]
+    sheet.column_widths(25, 10, nil, nil)
+  end
+end
+
+
+ 

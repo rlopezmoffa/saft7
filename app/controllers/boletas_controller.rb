@@ -19,6 +19,32 @@ class BoletasController < ApplicationController
       session[:to]=@to.to_s      
       @boletas = periodo = Boleta.where('fecha >= ? and fecha <= ?', @from, @to).order('fecha desc')
     end    
+
+
+    respond_to do |format|    
+      format.xlsx {                         
+        @boletas = Array.new                
+        @from = session[:from]
+        @to = session[:to]      
+
+        if @from != nil                           
+          @boletas = periodo = Boleta.where('fecha >= ? and fecha <= ?', @from, @to).order('fecha desc')       
+          @titulo = "Listdo de boletas desde: " + @from + " hasta: " + @to                 
+        else
+          @titulo = "listado de boletas"
+        end
+          
+          response.headers[
+            'Content-Disposition'
+            ] =  sprintf("attachment; filename=%s.xlsx", @titulo)
+          }          
+
+      format.html {             
+        render :index 
+    }
+  end
+
+
   end
 
   # GET /boletas/1 or /boletas/1.json

@@ -6,6 +6,7 @@
     <div class="col-sm-6">
       <div align="right">
         <%= link_to 'Crear Boleta', new_boleta_path, class: 'btn btn-primary' %>            
+        <%= link_to 'Exportar listado', boletas_path(format: :xlsx), class: 'btn btn-primary' %>
       </div>
     </div>
   </div>
@@ -32,6 +33,7 @@
     <thead>
       <tr>       
         <th><div align="center">#</th>
+        <th>Empresa</th>         
         <th>Fecha</th>         
         <th>Chofer</th>
         <th>Vehiculo</th>     
@@ -52,6 +54,7 @@
       <% @boletas.each do | boleta | %>
         <tr>         
           <td><div align="center"><%= link_to boleta.id, boleta %></td>
+          <td><%= boleta.get_nombre_empresa %></td>       
           <td><%= boleta.fecha %></td>                               
           <td><%= boleta.get_chofer %></td>      
           <td><%= boleta.get_vehiculo %></td>     

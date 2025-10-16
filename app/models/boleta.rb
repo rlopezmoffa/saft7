@@ -11,6 +11,12 @@ class Boleta < ApplicationRecord
     return empresa.present? ? empresa : nil
   end
 
+  def get_nombre_empresa
+    vehiculo = Vehiculo.where('id = ?', self.vehiculo_id).first
+    empresa = Empresa.where('id = ?', vehiculo.empresa_id).first
+    return empresa.present? ? empresa.nombre : nil
+  end
+
   def get_forma_pago
     if self.forma_pago.to_i == 1 
       return 'Efectivo'

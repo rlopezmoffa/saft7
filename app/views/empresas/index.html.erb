@@ -6,10 +6,15 @@
     <div class="col-sm-6">
       <div align="right">
         <%= link_to 'Crear Empresa', new_empresa_path, class: 'btn btn-primary' %>      
+        <%
+=begin%>
+ <%= link_to 'Exportar', empresas_path(format: :xlsx), class: 'btn btn-primary' %> 
+<%
+=end%>
       </div>
     </div>
   </div>
-</div>
+</div> 
 
 <br />
 <div class="table-responsive">
