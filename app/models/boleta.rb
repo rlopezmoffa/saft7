@@ -76,7 +76,7 @@ class Boleta < ApplicationRecord
   end
 
   def get_total_aportes    
-    return get_aporte_calculado + self.aporte_manual    
+    return get_aporte_calculado + self.aporte_manual.to_f
   end
 
   def get_liquido
