@@ -11,9 +11,12 @@ wb.add_worksheet(name: "Boletas") do |sheet|
   # Optionally, merge cells for the title to span across columns
   sheet.merge_cells "A1:M1" 
   
-  sheet.add_row ["Empresa", "Fecha","Chofer","Vehiculo","Turno",
-  "Tipo Liq", "Ticket", "Km.Ini", "Km.Fin", "Merc.Pago", "Bits", "Oca Cel", "Transferencia", "H13",
-  "POS", "Otros", "Recaudacion","Salario","Forma Pago","Combustible","Aceite","Gomeria","Lavado","Otros","Aportes", "Viaticos", "Retenciones"]
+  sheet.add_row [
+    "Empresa", "Fecha","Chofer","Vehiculo","Turno",
+    "Tipo Liq", "Ticket", "Km.Ini", "Km.Fin", "Merc.Pago", "Bits", "Oca Cel", "Transferencia", "H13",
+    "POS", "Otros", "Recaudacion","Salario","Forma Pago","Combustible","Aceite","Gomeria","Lavado","Otros","Aportes", "Viaticos", 
+    "Retenciones", "Entregado", "Diferencia",
+  ]
 
   # Create entries for each item
   @boletas.each do | boleta |
@@ -24,7 +27,7 @@ wb.add_worksheet(name: "Boletas") do |sheet|
       boleta.total_recaudado,
       boleta.get_salario,boleta.get_forma_pago,boleta.combustible,boleta.aceite,boleta.gomeria,
       boleta.lavados,boleta.otros,number_with_precision(boleta.get_total_aportes,:precision => 0, :delimiter => ".", :separator => ","),
-      boleta.viaticos, boleta.retenciones
+      boleta.viaticos, boleta.retenciones, boleta.total_entregado, boleta.get_diferencia,
     ]
     sheet.column_widths(25, 10, nil, nil)
   end

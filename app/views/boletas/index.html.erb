@@ -23,6 +23,10 @@
   <%= select_date @fecha_final, :prefix => :to %>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
+  <%= label_tag :orden %>
+  <%= select_tag "orden", options_for_select(["Fecha", "Id", "Recaudacion"], @orden) %>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
   <%= submit_tag "Aplicar seleccion" %>
   </div>
 <% end %>
@@ -33,8 +37,8 @@
     <thead>
       <tr>       
         <th><div align="center">#</th>
-        <th>Empresa</th>         
         <th>Fecha</th>         
+        <th>Empresa</th>         
         <th>Chofer</th>
         <th>Vehiculo</th>     
         <th>Turno</th>     
@@ -52,11 +56,20 @@
 
     <tbody>
       <% @boletas.each do | boleta | %>
-        <tr>         
-          <td><div align="center"><%= link_to boleta.id, boleta %></td>
+        <tr>                  
+          <td><div align="center"><%= link_to boleta.id, boleta %> </div> </td>
+
+          <td><%= boleta.fecha %></td>          
           <td><%= boleta.get_nombre_empresa %></td>       
-          <td><%= boleta.fecha %></td>                               
-          <td><%= boleta.get_chofer %></td>      
+
+          <td>
+            <% if boleta.is_in_list(@duplicados) %>
+              <div class="yellow"><%= boleta.get_chofer %></div>
+            <% else %>
+              <div class="white"><%= boleta.get_chofer %></div>
+            <% end %> 
+          </td>      
+
           <td><%= boleta.get_vehiculo %></td>     
           <td><%= boleta.turno %></td>      
           <td><%= boleta.total_recaudado %></td>    
@@ -74,3 +87,13 @@
     </tbody>
   </table>
 </div>
+
+  <% if @paginar %>
+      <div align="center"><%= paginate @boletas, theme: 'bootstrap-5',  pagination_class: "flex-wrap justify-content-center" %></div>
+  <% end %>
+
+
+<style media="screen" type="text/css">
+  .yellow { background-color: yellow; }
+  .white { background-color: white; }
+</style>

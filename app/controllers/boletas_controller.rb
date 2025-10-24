@@ -11,15 +11,34 @@ class BoletasController < ApplicationController
       @fecha_final = Time.now
     end
 
+        # @movimientos = Movimiento.all.page(params[:page]).per(20)
+        # <% if @paginar %>
+        #   <div align="center"><%= paginate @movimientos %></div>
+        # <% end %>
+
     @boletas = Array.new
+    @duplicados = Array.new
+
     if params[:from]
       @fecha_inicial = @from = Date.civil(params[:from][:year].to_i, params[:from][:month].to_i, params[:from][:day].to_i)
       @fecha_final = @to = Date.civil(params[:to][:year].to_i, params[:to][:month].to_i, params[:to][:day].to_i)
       session[:from]=@from.to_s # store dates in cookie
       session[:to]=@to.to_s      
-      @boletas = periodo = Boleta.where('fecha >= ? and fecha <= ?', @from, @to).order('fecha desc')
+
+      if params[:orden] == "Fecha"
+        @boletas = periodo = Boleta.where('fecha >= ? and fecha <= ?', @from, @to).order('fecha desc').page(params[:page]).per(20)
+      elsif params[:orden] == "Id"
+        @boletas = periodo = Boleta.where('fecha >= ? and fecha <= ?', @from, @to).order('id').page(params[:page]).per(20)
+      else
+        @boletas = periodo = Boleta.where('fecha >= ? and fecha <= ?', @from, @to).order('total_recaudado').page(params[:page]).per(20)
+        @duplicados = verifica_duplicados(@boletas)             
+      end
+      @orden = params[:orden]
+      
+      @paginar = true
     end    
 
+    # @boletas = Boleta.all.page(params[:page]).per(20)
 
     respond_to do |format|    
       format.xlsx {                         
@@ -41,14 +60,15 @@ class BoletasController < ApplicationController
 
       format.html {             
         render :index 
-    }
-  end
-
-
+        puts('--------------------------------')
+        puts(@duplicados.to_json)
+      }
+    end
   end
 
   # GET /boletas/1 or /boletas/1.json
   def show
+    @notice = params[:notice]    
   end
 
   # GET /boletas/new
@@ -62,6 +82,8 @@ class BoletasController < ApplicationController
 
   # POST /boletas or /boletas.json
   def create
+    notice = ""
+
     set_recaudacion
 
     @boleta = Boleta.new(boleta_params)
@@ -69,9 +91,9 @@ class BoletasController < ApplicationController
     vehiculo = Vehiculo.find(@boleta.vehiculo_id)
     @boleta.empresa_id = vehiculo.empresa_id
 
-    respond_to do |format|
+    respond_to do |format|      
       if @boleta.save
-        format.html { redirect_to boleta_url(@boleta)}
+        format.html { redirect_to boleta_url(@boleta, notice: notice)}
         format.json { render :show, status: :created, location: @boleta }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -107,6 +129,29 @@ class BoletasController < ApplicationController
   end
 
   private
+
+    def verifica_duplicados(boletas)
+
+      duplicados = Array.new
+      index = 0    
+      
+      limite_sup = boletas.count - 1
+
+      boletas.each do | boleta |
+        if index < limite_sup
+          if boletas[index].fecha == boletas[index + 1].fecha && boletas[index].empresa_id == boletas[index + 1].empresa_id &&
+            boletas[index].chofer_id == boletas[index + 1].chofer_id && boletas[index].total_recaudado == boletas[index + 1].total_recaudado
+            boletas[index].turno == boletas[index + 1].turno
+           
+            duplicados.push(boletas[index + 1].id)
+          end          
+          index += 1
+        end        
+      end
+
+      return duplicados
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_boleta
       @boleta = Boleta.find(params[:id])

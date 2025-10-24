@@ -90,7 +90,11 @@ gem 'wkhtmltopdf-binary', '~> 0.12.3.1'
 gem 'stringio', '~> 3.0', '>= 3.0.1'
 gem 'rails-i18n'
 
+
 gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
 gem 'axlsx_rails'
 
 gem "bootstrap_form", "~> 5.4"
+gem 'kaminari'
+gem 'bootstrap5-kaminari-views'
+gem 'i18n'
