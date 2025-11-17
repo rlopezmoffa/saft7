@@ -9,15 +9,26 @@
 <%= form_tag reporte_mantenimiento_url, :method => 'get' do %>
   <div class="field">
 
+  <div>
   <%= label_tag :fecha_inicial %>
   <%= select_date @fecha_inicial, :prefix => :from %>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <%= label_tag :fecha_final %>
   <%= select_date @fecha_final, :prefix => :to %>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
-  <%= label_tag :vehiculo %>   
-  <%= collection_select :vehiculo, :id, Vehiculo.order(:matricula),:id,:matricula, include_blank: false %> 
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+  </div>
+
+  <div>
+
+  <%= label_tag "Vehiculo: " %>  
+  <%= select_tag 'vehiculo_id', options_from_collection_for_select(@vehiculos, :id, :matricula, @selected_vehiculo_id) %>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+
+  <%= label_tag "Item de mantenimiento: " %>  
+  <%= select_tag 'item_mantenimiento_id', options_from_collection_for_select(@items_mantenimiento, :id, :nombre, @selected_item_id) %>
+
+ 
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <%= submit_tag "Aplicar seleccion" %>
   </div>
@@ -27,6 +38,7 @@
  <table class="table table-striped table-sm">
     <thead>
       <tr>               
+        <th>Matricula</th>
         <th>Item</th>
         <th>Fecha</th>
         <th>Kmts</th>                      
@@ -38,6 +50,7 @@
     <tbody>
       <% @servicios_realizados.each do |servicio_realizado| %>
         <tr>                 
+          <td><%= servicio_realizado.get_matricula %></td>
           <td><%= servicio_realizado.get_item %></td>
           <td><%= servicio_realizado.fecha %></td>          
           <td><%= servicio_realizado.kmts %></td>       
