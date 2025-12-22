@@ -94,20 +94,17 @@
         
         <td><strong>Salario: </strong><%= boleta.get_salario %></td>
 
-        <td><strong>Aportes: </strong><%= number_with_precision(boleta.get_total_aportes,
-            :precision => 0, :delimiter => ".", :separator => ",") %></td>
+        <td><strong>Aportes: </strong><%= boleta.get_total_aportes %></td>
 
         <td><strong>Gastos: </strong><%= boleta.get_gastos %></td>
 
         <td><strong>Tarjetas: </strong><%= boleta.get_tarjetas %></td>      
 
-        <td><strong>Liquido: </strong><%= number_with_precision(boleta.get_liquido,
-            :precision => 0, :delimiter => ".", :separator => ",") %></td>                
+        <td><strong>Liquido: </strong><%= boleta.get_liquido %></td>                
 
         <td><strong>Entregado: </strong><%= boleta.total_entregado %></td>
 
-        <td><strong>Diferencia: </strong><%= number_with_precision(boleta.get_diferencia,
-            :precision => 0, :delimiter => ".", :separator => ",") %></td>
+        <td><strong>Diferencia: </strong><%= boleta.get_diferencia %></td>
       </tr>       
     </tbody>
   </table>  

@@ -80,8 +80,7 @@
           <td><%= boleta.gomeria %></td>    
           <td><%= boleta.lavados %></td>    
           <td><%= boleta.otros %></td>           
-          <td><%= number_with_precision(boleta.get_total_aportes,
-            :precision => 0, :delimiter => ".", :separator => ",") %></td> 
+          <td><%= boleta.get_total_aportes %></td> 
         </tr>
       <% end %>
     </tbody>

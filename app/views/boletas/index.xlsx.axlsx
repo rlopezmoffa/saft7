@@ -26,7 +26,7 @@ wb.add_worksheet(name: "Boletas") do |sheet|
       boleta.rec_oca_cel, boleta.rec_transferencia, boleta.rec_h13, boleta.rec_pos, boleta.rec_otros,                     
       boleta.total_recaudado,
       boleta.get_salario,boleta.get_forma_pago,boleta.combustible,boleta.aceite,boleta.gomeria,
-      boleta.lavados,boleta.otros,number_with_precision(boleta.get_total_aportes,:precision => 0, :delimiter => ".", :separator => ","),
+      boleta.lavados,boleta.otros,boleta.get_total_aportes,
       boleta.viaticos, boleta.retenciones, boleta.total_entregado, boleta.get_diferencia,
     ]
     sheet.column_widths(25, 10, nil, nil)
