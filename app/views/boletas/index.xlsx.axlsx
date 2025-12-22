@@ -12,7 +12,7 @@ wb.add_worksheet(name: "Boletas") do |sheet|
   sheet.merge_cells "A1:M1" 
   
   sheet.add_row [
-    "Empresa", "Fecha","Chofer","Vehiculo","Turno",
+    "Boleta", "Empresa", "Fecha","Chofer","Vehiculo","Turno",
     "Tipo Liq", "Ticket", "Km.Ini", "Km.Fin", "Merc.Pago", "Bits", "Oca Cel", "Transferencia", "H13",
     "POS", "Otros", "Recaudacion","Salario","Forma Pago","Combustible","Aceite","Gomeria","Lavado","Otros","Aportes", "Viaticos", 
     "Retenciones", "Entregado", "Diferencia",
@@ -21,7 +21,7 @@ wb.add_worksheet(name: "Boletas") do |sheet|
   # Create entries for each item
   @boletas.each do | boleta |
     sheet.add_row [
-      boleta.get_nombre_empresa, boleta.fecha,boleta.get_chofer,boleta.get_vehiculo,boleta.get_turno,
+      boleta.id, boleta.get_nombre_empresa, boleta.fecha,boleta.get_chofer,boleta.get_vehiculo,boleta.get_turno,
       boleta.get_tipo_liquidacion, boleta.ticket, boleta.kmts_ini, boleta.kmts_fin, boleta.rec_mercado_pago, boleta.rec_bits,
       boleta.rec_oca_cel, boleta.rec_transferencia, boleta.rec_h13, boleta.rec_pos, boleta.rec_otros,                     
       boleta.total_recaudado,
@@ -29,7 +29,7 @@ wb.add_worksheet(name: "Boletas") do |sheet|
       boleta.lavados,boleta.otros,boleta.get_total_aportes,
       boleta.viaticos, boleta.retenciones, boleta.total_entregado, boleta.get_diferencia,
     ]
-    sheet.column_widths(25, 10, nil, nil)
+    sheet.column_widths(6, 25, 10, nil, nil)
   end
 end
 
