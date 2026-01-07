@@ -16,10 +16,10 @@
  <table class="table table-striped table-sm">
     <thead>
       <tr>               
+        <th>Matricula</th>         
         <th>Movil</th>
         <th>Marca</th>
         <th>Modelo</th>
-        <th>Matricula</th>         
         <th>Empresa</th>     
       </tr>
     </thead>
@@ -27,10 +27,10 @@
     <tbody>
       <% @vehiculos.each do | vehiculo | %>
         <tr>
+          <td><%= vehiculo.matricula %></td>                        
           <td><%= vehiculo.movil %></td>                 
           <td><%= vehiculo.marca %></td>
           <td><%= vehiculo.modelo %></td>
-          <td><%= vehiculo.matricula %></td>                        
           <td><%= vehiculo.get_empresa %></td>                        
 
           <td style="width: 25%">     

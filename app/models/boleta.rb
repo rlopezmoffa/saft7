@@ -91,6 +91,18 @@ class Boleta < ApplicationRecord
     return total_recaudado - get_gastos - get_salario + get_total_aportes - get_tarjetas
   end
 
+  def get_otros 
+    return self.rec_otros.to_f - self.otros.to_f
+  end
+
+  def get_detalle_otros(linea)
+    if linea.detalle_otros == ""
+      return self.detalle_otros 
+    else 
+      return sprintf("%s, %s", linea.detalle_otros, self.detalle_otros)
+    end
+  end
+
   def get_turno
     return self.turno == 1 ? 'DIURNO' : "NOCTURNO"
   end

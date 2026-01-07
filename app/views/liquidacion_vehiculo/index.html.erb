@@ -36,8 +36,11 @@
     :final_lavados => @final_lavados,
     :final_otros => @final_otros,
     :final_aportes => @final_aportes,    
+    :dias_recaudados => @dias_recaudados,
+    :final_ganancia => @final_ganancia,
     :final_kmts => @final_kmts,
-    :final_ganancia => @final_ganancia %>
+    :final_valor_kmt => @final_valor_kmt
+    %>
     </tr>
   </thead>
 </table>
@@ -56,7 +59,7 @@
         <th><div align="right">Gomeria</th>  
         <th><div align="right">Lavado</th>    
         <th><div align="right">Otros</th>           
-        <th><div align="right">Detalle Otros</th>  
+        <th><div align="left">Detalle Otros</th>  
         <th><div align="right">Aportes</th>          
         <th><div align="right">Subtotal</th>  
         <th><div align="right">Ganancia</th>          
@@ -155,9 +158,11 @@
       <td><div align="right"><%= number_with_precision(@final_aportes,
         :precision => 0, :delimiter => ".", :separator => ",") %></td>       
 
-      <td></td>       
+      <td><div align="right"><%= number_with_precision(@final_subtotal,
+        :precision => 0, :delimiter => ".", :separator => ",") %></td>      
 
-      <td></td>         
+      <td><div align="right"><%= number_with_precision(@final_ganancia,
+        :precision => 0, :delimiter => ".", :separator => ",") %></td>             
 
       <td><div align="right"><%= number_with_precision(@final_kmts,
         :precision => 0, :delimiter => ".", :separator => ",") %></td>     

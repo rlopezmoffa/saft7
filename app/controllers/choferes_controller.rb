@@ -3,7 +3,7 @@ class ChoferesController < ApplicationController
 
   # GET /choferes or /choferes.json
   def index
-    @choferes = Chofer.all
+    @choferes = Chofer.order('apellido asc')
   end
 
   # GET /choferes/1 or /choferes/1.json

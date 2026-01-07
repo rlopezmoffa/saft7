@@ -35,6 +35,7 @@
   <table class="table table-bordered">   
     <tbody>   
       <tr>            
+        <td><strong>Recaudacion: </strong><%= boleta.total_recaudado %></td>      
         <td><strong>Salario: </strong><%= boleta.get_salario %></td>    
         <td><strong>Forma Pago: </strong><%= boleta.get_forma_pago %></td>    
         <td><strong>Aporte calculado: </strong><%= number_with_precision(boleta.get_aporte_calculado,
@@ -48,22 +49,7 @@
     </tbody>
   </table>  
 
-  <table class="table table-bordered">   
-    <tbody>   
-      <tr>     
-        <td><strong>Recaudacion: </strong><%= boleta.total_recaudado %></td>      
-        <td><strong>Mercado Pago: </strong><%= boleta.rec_mercado_pago %></td>     
-        <td><strong>BITS: </strong><%= boleta.rec_bits %></td>
-        <td><strong>OCACEL: </strong><%= boleta.rec_oca_cel %></td>       
-        <td><strong>Transferencia: </strong><%= boleta.rec_transferencia %></td>     
-        <td><strong>H13: </strong><%= boleta.rec_h13 %></td>
-        <td><strong>POS: </strong><%= boleta.rec_pos %></td>    
-        <td><strong>Otros: </strong><%= boleta.rec_otros %></td>       
-      </tr>       
-    </tbody>
-  </table>  
-
-  <table class="table table-bordered">   
+   <table class="table table-bordered">   
     <tbody>   
       <tr>     
         <td><strong>Combustible: </strong><%= boleta.combustible %></td>     
@@ -77,6 +63,22 @@
       </tr>       
     </tbody>
   </table>  
+
+  <table class="table table-bordered">   
+    <tbody>   
+      <tr>     
+        <td><strong>Mercado Pago: </strong><%= boleta.rec_mercado_pago %></td>     
+        <td><strong>BITS: </strong><%= boleta.rec_bits %></td>
+        <td><strong>OCACEL: </strong><%= boleta.rec_oca_cel %></td>       
+        <td><strong>Transferencia: </strong><%= boleta.rec_transferencia %></td>     
+        <td><strong>H13: </strong><%= boleta.rec_h13 %></td>
+        <td><strong>POS: </strong><%= boleta.rec_pos %></td>    
+        <td><strong>Otros: </strong><%= boleta.rec_otros %></td>       
+      </tr>       
+    </tbody>
+  </table>  
+
+ 
 
   <table class="table table-bordered">   
     <tbody>   

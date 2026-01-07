@@ -3,7 +3,7 @@ class EmpresasController < ApplicationController
 
   # GET /empresas or /empresas.json
   def index
-    @empresas = Empresa.all
+    @empresas = Empresa.order('nombre')
 
       respond_to do |format|    
         format.xlsx {            

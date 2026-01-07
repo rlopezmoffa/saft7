@@ -1,5 +1,6 @@
 <div class="page-header">
-  <h3>Resumen de la Liquidacion del Vehiculo - <%= $titulo_periodo %></h3>
+  <h3>Resumen de la Liquidacion del Vehiculo - <%= @titulo_periodo %></h3>
+  <br>
 </div>
 
 <div class="table-responsive">
@@ -8,10 +9,8 @@
       <tr>         	
       	<th>Total recaudado</th>     
       	<td><div align="right"><%= number_with_precision(@total_recaudado, 
-          :precision => 0, :delimiter => ".", :separator => ",") %></td>      
-
-      	<td><div align="right"><%= number_with_precision(@incidencia_total_recaudado, 
-          :precision => 2, :delimiter => ".", :separator => ",") %>%</td>            
+          :precision => 0, :delimiter => ".", :separator => ",") %></td>       
+        <td></td>    	    
       </tr>  
 
       <tr>         	

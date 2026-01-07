@@ -15,23 +15,29 @@
 <%= form_tag boletas_path, :method => 'get' do %>
   <div class="field">
 
-  <%= label_tag :fecha_inicial %>
-  <%= select_date @fecha_inicial, :prefix => :from %>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= label_tag :fecha_inicial %>
+    <%= select_date @fecha_inicial, :prefix => :from %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-  <%= label_tag :fecha_final %>
-  <%= select_date @fecha_final, :prefix => :to %>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= label_tag :fecha_final %>
+    <%= select_date @fecha_final, :prefix => :to %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-  <%= label_tag :orden %>
-  <%= select_tag "orden", options_for_select(["Fecha", "Id", "Recaudacion"], @orden) %>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= label_tag :orden %>
+    <%= select_tag "orden", options_for_select(["Fecha", "Id", "Recaudacion"], @orden) %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-  <%= submit_tag "Aplicar seleccion" %>
+    <%= submit_tag "Aplicar seleccion" %>
+    &nbsp;&nbsp;
+
+    <% if @total_boletas %>
+      Boletas encontradas: <%= @total_boletas %>
+    <% end %>
+
   </div>
 <% end %>
 
-<br />
+
 <div class="table-responsive">
  <table class="table table-striped table-sm">
     <thead>
@@ -50,6 +56,7 @@
         <th>Gomeria</th>     
         <th>Lavado</th>    
         <th>Otros</th>    
+        <th>Detalle Otros</th>    
         <th>Aportes</th>   
       </tr>
     </thead>
@@ -79,7 +86,8 @@
           <td><%= boleta.aceite %></td>    
           <td><%= boleta.gomeria %></td>    
           <td><%= boleta.lavados %></td>    
-          <td><%= boleta.otros %></td>           
+          <td><%= boleta.get_otros %></td>           
+          <td><%= boleta.detalle_otros %></td>         
           <td><%= boleta.get_total_aportes %></td> 
         </tr>
       <% end %>

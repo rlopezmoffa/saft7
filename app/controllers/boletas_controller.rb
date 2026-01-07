@@ -25,8 +25,10 @@ class BoletasController < ApplicationController
       session[:from]=@from.to_s # store dates in cookie
       session[:to]=@to.to_s      
 
+      @total_boletas = Boleta.where('fecha >= ? and fecha <= ?', @from, @to).count
+
       if params[:orden] == "Fecha"
-        @boletas = periodo = Boleta.where('fecha >= ? and fecha <= ?', @from, @to).order('fecha desc').page(params[:page]).per(20)
+        @boletas = periodo = Boleta.where('fecha >= ? and fecha <= ?', @from, @to).order('fecha').order('id').page(params[:page]).per(20)
       elsif params[:orden] == "Id"
         @boletas = periodo = Boleta.where('fecha >= ? and fecha <= ?', @from, @to).order('id').page(params[:page]).per(20)
       else

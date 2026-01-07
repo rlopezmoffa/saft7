@@ -3,7 +3,7 @@ class VehiculosController < ApplicationController
 
   # GET /vehiculos or /vehiculos.json
   def index
-    @vehiculos = Vehiculo.all
+    @vehiculos = Vehiculo.order('matricula')
   end
 
   # GET /vehiculos/1 or /vehiculos/1.json

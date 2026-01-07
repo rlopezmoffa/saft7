@@ -25,8 +25,8 @@ class AdicionalesVehiculosController < ApplicationController
 
       @total_gastos = @total_ingresos = 0
       @adicionales_vehiculos.each do | x |
-        @total_gastos += x.gastos
-        @total_ingresos = x.ingresos
+        @total_gastos += x.gastos.to_f
+        @total_ingresos = x.ingresos.to_f
       end        
     end    
 
